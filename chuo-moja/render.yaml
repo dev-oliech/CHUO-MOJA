@@ -1,0 +1,18 @@
+# Render.com blueprint. Needs a paid instance because the database sits on a persistent disk.
+services:
+  - type: web
+    name: chuo-moja
+    runtime: node
+    plan: starter
+    buildCommand: "echo no build step"
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    disk: { name: data, mountPath: /data, sizeGB: 1 }
+    envVars:
+      - { key: DATA_DIR, value: /data }
+      - { key: TRUST_PROXY, value: "1" }
+      - { key: PUBLIC_URL, sync: false }
+      - { key: ADMIN_EMAILS, sync: false }
+      - { key: MAIL_PROVIDER, value: resend }
+      - { key: MAIL_API_KEY, sync: false }
+      - { key: MAIL_FROM, sync: false }
