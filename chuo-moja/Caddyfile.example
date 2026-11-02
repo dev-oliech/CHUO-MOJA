@@ -1,7 +1,0 @@
-# For a VPS: install Caddy, replace the domain, and run `caddy run`. It gets and renews HTTPS certificates by itself.
-chuomoja.example.co.ke {
-	encode gzip
-	reverse_proxy 127.0.0.1:3000 {
-		flush_interval -1
-	}
-}
